@@ -132,7 +132,9 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
-
+     'text' => 'Animais',
+     'url' => 'animais',
+     'icon' => 'fas fa-paw',
     'usermenu_enabled' => true,
     'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
