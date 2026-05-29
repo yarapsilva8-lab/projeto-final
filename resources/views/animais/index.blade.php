@@ -50,6 +50,9 @@
                                class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
+                            <a href="{{ route('animais.show', $animal->id) }}" class="btn btn-sm btn-info">
+                                 <i class="fas fa-eye"></i> Ver
+                            </a>
 
                             <form action="{{ route('animais.destroy', $animal) }}"
                                   method="POST" class="d-inline"

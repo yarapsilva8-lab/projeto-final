@@ -44,9 +44,9 @@ class AnimalController extends Controller
     }
 
 
-    public function show(string $id)
+    public function show(Animal $animal)
     {
-        //
+        return view('animais.show', compact('animal'));
     }
 
 
