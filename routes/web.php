@@ -4,8 +4,10 @@ use App\Http\Controllers\AnimalController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return 'Mundo Pet funcionando!';
 });
 
 Auth::routes();
