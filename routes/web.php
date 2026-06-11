@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
-    return 'Mundo Pet funcionando!';
+       return redirect('/animais');
 });
 
 Auth::routes();

@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>Mundo Pet</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '',
+    'logo_img' => '',
+    'logo_img_class' => '',
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_xl_class' => '',
+    'logo_img_alt' => '',
 
     /*
     |--------------------------------------------------------------------------
@@ -153,6 +153,13 @@ return [
         'type' => 'navbar-search',
         'text' => 'search',
         'topnav_right' => true,
+    ],
+
+    [
+    'text'    => 'Sair',
+    'url'     => 'logout',
+    'icon'    => 'fas fa-sign-out-alt',
+    'topnav_right' => true,
     ],
     ],
     /*
@@ -321,12 +328,7 @@ return [
         'icon' => 'fas fa-paw',
     ],
 
-    [
-        'text' => 'Cadastrar Animal',
-        'url' => 'animais/create',
-        'icon' => 'fas fa-plus-circle',
-    ],
-
+   
 ],
 
     /*
