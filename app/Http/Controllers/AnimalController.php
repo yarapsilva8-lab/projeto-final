@@ -51,14 +51,15 @@ public function store(AnimalRequest $request)
 
   public function update(AnimalRequest $request, Animal $animal)
 {
-    $dados = $request->validated([
+    $dados = $request->validated();
+    [
         'nome'      => 'required|string|max:250',
         'especie'   => 'required|string|max:100',
         'raca'      => 'nullable|string|max:100',
         'idade'     => 'nullable|integer|min:0',
         'foto'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         'descricao' => 'nullable|string',
-    ]);
+    ];
 
 
     if ($request->input('remover_foto')) {

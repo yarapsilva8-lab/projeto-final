@@ -328,6 +328,12 @@ return [
         'icon' => 'fas fa-paw',
     ],
 
+      [
+        'text' => 'Sobre',
+        'url' => 'sobre',
+        'icon' => 'fas fa-info-circle',
+    ],
+
 
 ],
 
