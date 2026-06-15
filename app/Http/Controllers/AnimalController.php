@@ -51,7 +51,7 @@ public function store(AnimalRequest $request)
 
   public function update(AnimalRequest $request, Animal $animal)
 {
-    $dados = $request->validate([
+    $dados = $request->validated([
         'nome'      => 'required|string|max:250',
         'especie'   => 'required|string|max:100',
         'raca'      => 'nullable|string|max:100',
