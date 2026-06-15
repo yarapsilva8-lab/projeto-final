@@ -49,7 +49,7 @@ public function store(AnimalRequest $request)
     }
 
 
-  public function update(Request $request, Animal $animal)
+  public function update(AnimalRequest $request, Animal $animal)
 {
     $dados = $request->validate([
         'nome'      => 'required|string|max:250',
