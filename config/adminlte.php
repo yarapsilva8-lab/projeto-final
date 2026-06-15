@@ -72,7 +72,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Authentication Logo
+    | Authentication Logoni
     |--------------------------------------------------------------------------
     |
     | Here you can setup an alternative logo to use on your login and register
@@ -328,7 +328,7 @@ return [
         'icon' => 'fas fa-paw',
     ],
 
-   
+
 ],
 
     /*

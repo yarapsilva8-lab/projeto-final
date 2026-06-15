@@ -12,6 +12,16 @@
     <form action="{{ route('animais.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
 
+      @if($errors->any())
+          <div class="alert alert-danger">
+              <ul class="mb-0">
+                  @foreach($errors->all() as $erro)
+                      <li>{{ $erro }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
+
       <div class="form-group">
         <label>Nome *</label>
         <input type="text" name="nome"
@@ -46,11 +56,8 @@
 
       <div class="form-group">
         <label>Foto</label>
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" name="foto"
-                 id="foto" accept="image/*">
-          <label class="custom-file-label" for="foto">Escolher imagem...</label>
-        </div>
+        <input type="file" name="foto" id="foto" accept="image/*" class="form-control-file">
+        <small id="preview-nome" class="text-muted"></small>
       </div>
 
       <div class="form-group">
@@ -63,4 +70,12 @@
     </form>
   </div>
 </div>
+@endsection
+
+@section('js')
+<script>
+  document.getElementById('foto').addEventListener('change', function() {
+    document.getElementById('preview-nome').textContent = this.files[0]?.name ?? '';
+  });
+</script>
 @endsection

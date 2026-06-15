@@ -16,16 +16,16 @@ class AnimalRequest extends FormRequest
      * Determine if the user is authorized to make this request.
      */
     public function rules(): array
-    {
-        return [
-            'nome'      => 'required|string|max:255',
-            'especie'   => 'required|string|max:100',
-            'raca'      => 'nullable|string|max:100',
-            'idade'     => 'nullable|integer|min:0',
-            'foto'      => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'descricao' => 'required|string',
-        ];
-    }
+{
+    return [
+        'nome'      => 'required|string|max:255',
+        'especie'   => 'required|string|max:100',
+        'raca'      => 'nullable|string|max:100',
+        'idade'     => 'nullable|integer|min:0',
+        'foto'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'descricao' => 'nullable|string',
+    ];
+}
     /**
      * Get the validation rules that apply to the request.
      *

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Animal;
 use Illuminate\Http\Request;
+use App\Http\Requests\AnimalRequest;
 use Illuminate\Support\Facades\Storage;
 
 class AnimalController extends Controller
@@ -22,26 +23,18 @@ class AnimalController extends Controller
       return view('animais.create');
     }
 
+public function store(AnimalRequest $request)
+{
+    $dados = $request->validated();
 
-    public function store(Request $request)
-    {
-        $dados = $request->validate([
-            'nome' => 'required|string|max:255',
-            'especie' => 'required|string|max:100',
-            'raca' => 'nullable|string|max:100',
-            'idade' =>'nullable|string|min:0',
-            'foto' =>'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'descricao' => 'nullable|string',
-
-        ]);
-
-        if($request->hasFile('foto')) {
-            $dados['foto'] = $request->file('foto')->store('animais', 'public');
-        }
-            Animal::create($dados);
-
-            return redirect()->route('animais.index')->with('success', 'Animal cadastrado com sucesso!');
+    if ($request->hasFile('foto')) {
+        $dados['foto'] = $request->file('foto')->store('animais', 'public');
     }
+
+    Animal::create($dados);
+
+    return redirect()->route('animais.index')->with('success', 'Animal cadastrado com sucesso!');
+}
 
 
     public function show(Animal $animal)
@@ -56,27 +49,37 @@ class AnimalController extends Controller
     }
 
 
-    public function update(Request $request, animal $animal)
-    {
-        $dados = $request->validate([
-            'nome' => 'required|string|max:250',
-            'especie' => 'required|string|max:100',
-            'raca' => 'nullable|string|max:100',
-            'idade' => 'nullable|integer|min:0',
-            'foto' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'descricao' => 'nullable|string',
-        ]);
+  public function update(Request $request, Animal $animal)
+{
+    $dados = $request->validate([
+        'nome'      => 'required|string|max:250',
+        'especie'   => 'required|string|max:100',
+        'raca'      => 'nullable|string|max:100',
+        'idade'     => 'nullable|integer|min:0',
+        'foto'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'descricao' => 'nullable|string',
+    ]);
 
-        if ($request->hasFile('foto')) {
-            if ($animal->foto) {
+
+    if ($request->input('remover_foto')) {
+        if ($animal->foto) {
+            Storage::disk('public')->delete($animal->foto);
+        }
+        $dados['foto'] = null;
+    }
+
+
+    if ($request->hasFile('foto')) {
+        if ($animal->foto) {
             Storage::disk('public')->delete($animal->foto);
         }
         $dados['foto'] = $request->file('foto')->store('animais', 'public');
-         }
-            $animal->update($dados);
-
-            return redirect()->route('animais.index')->with('success', 'Animal atualizado com sucesso!');
     }
+
+    $animal->update($dados);
+
+    return redirect()->route('animais.index')->with('success', 'Animal atualizado com sucesso!');
+}
 
     public function destroy(Animal $animal)
     {

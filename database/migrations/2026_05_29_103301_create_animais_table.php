@@ -7,17 +7,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
 
-     
+
     public function up(): void
     {
         Schema::create('animais', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
             $table->string('especie');
-            $table->string('raca')->nullable;
-            $table->integer('idade')->nullable;
-            $table->string('foto')->nullable;
-            $table->text('descricao')->nullable;
+            $table->string('raca')->nullable();
+            $table->integer('idade')->nullable();
+            $table->string('foto')->nullable();
+            $table->text('descricao')->nullable();
             $table->timestamps();
             });
     }

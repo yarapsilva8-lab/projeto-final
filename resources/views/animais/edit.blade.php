@@ -14,7 +14,7 @@
       @method('PUT')
 
       <div class="form-group">
-        <label>Nome *</label>
+        <label>Nome</label>
         <input type="text" name="nome"
                class="form-control @error('nome') is-invalid @enderror"
                value="{{ old('nome', $animal->nome) }}">
@@ -24,7 +24,7 @@
       </div>
 
       <div class="form-group">
-        <label>Espécie *</label>
+        <label>Espécie</label>
         <input type="text" name="especie"
                class="form-control @error('especie') is-invalid @enderror"
                value="{{ old('especie', $animal->especie) }}">
@@ -47,16 +47,24 @@
       </div>
 
       <div class="form-group">
-        <label>Foto atual</label><br>
+        <label>Foto</label><br>
+
         @if($animal->foto)
           <img src="{{ asset('storage/'.$animal->foto) }}"
                width="80" height="80" style="object-fit:cover; border-radius:4px; margin-bottom:8px">
+          <br>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" name="remover_foto" id="remover_foto" value="1">
+            <label class="form-check-label text-danger" for="remover_foto">
+              Remover foto atual
+            </label>
+          </div>
         @else
           <span class="text-muted d-block mb-2">Sem foto</span>
         @endif
+
         <div class="custom-file">
-          <input type="file" class="custom-file-input" name="foto"
-                 id="foto" accept="image/*">
+          <input type="file" class="custom-file-input" name="foto" id="foto" accept="image/*">
           <label class="custom-file-label" for="foto">Trocar imagem...</label>
         </div>
       </div>
@@ -71,4 +79,13 @@
     </form>
   </div>
 </div>
+@endsection
+
+@section('js')
+<script>
+  document.getElementById('foto').addEventListener('change', function() {
+    const nome = this.files[0]?.name ?? 'Trocar imagem...';
+    document.querySelector('.custom-file-label').textContent = nome;
+  });
+</script>
 @endsection
